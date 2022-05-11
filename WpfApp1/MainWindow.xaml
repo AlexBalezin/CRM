@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MaxHeight="1080" MaxWidth="1920" MinWidth="200" MinHeight="350">
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,7 +26,6 @@
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>
-
 
         <Grid Grid.Row="1" Background="#699999">
             <Grid.RowDefinitions>

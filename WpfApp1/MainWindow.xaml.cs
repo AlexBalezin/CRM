@@ -25,6 +25,10 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         CrmContext db;
+        ItemMenu itemProduct;
+        ItemMenu itemSeller;
+        ItemMenu itemCustomer;
+        ItemMenu itemReceipt;
 
         public MainWindow()
         {
@@ -39,11 +43,15 @@ namespace WpfApp1
             var menuReceipt = new List<SubItem>();
 
             menuProduct.Add(new SubItem("Список товаров", new UserControlProducts(db)));
-            var itemProduct = new ItemMenu("Товар", menuProduct, PackIconKind.AlphaPBox);
+            itemProduct = new ItemMenu("Товар", menuProduct, PackIconKind.AlphaPBox);
 
-            var itemSeller = new ItemMenu("Продавец", menuSeller, PackIconKind.About);
-            var itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
-            var itemReceipt = new ItemMenu("Чек", menuReceipt, PackIconKind.About);
+            menuSeller.Add(new SubItem("Список продавцов", new UserControlSellers(db)));
+            itemSeller = new ItemMenu("Продавец", menuSeller, PackIconKind.About);
+
+            menuCustomer.Add(new SubItem("Список покупателей", new UserControlCustomers(db)));
+            itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
+
+            itemReceipt = new ItemMenu("Чек", menuReceipt, PackIconKind.About);
 
             Menu.Children.Add(new UserControlMenuItem(itemProduct, this, db));
             Menu.Children.Add(new UserControlMenuItem(itemSeller, this, db));
@@ -59,11 +67,16 @@ namespace WpfApp1
 
             if (screen != null)
             {
+                if (screen is UserControlProducts)
+                {
+                    (((UserControlProducts)screen).productsGrid.Columns[3] as System.Windows.Controls.DataGridComboBoxColumn).ItemsSource = db.Sellers.Local.ToBindingList().Where(x => x.Name != null);
+                }
+
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(screen);
+
+
             }
         }
-
-
     }
 }

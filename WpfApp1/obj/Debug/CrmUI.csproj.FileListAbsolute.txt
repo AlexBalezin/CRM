@@ -35,3 +35,9 @@ D:\Projects\WPF\CrmShop\WpfApp1\bin\Debug\CrmBl.pdb
 D:\Projects\WPF\CrmShop\WpfApp1\bin\Debug\CrmBl.dll.config
 D:\Projects\WPF\CrmShop\WpfApp1\bin\Debug\Caliburn.Micro.Core.pdb
 D:\Projects\WPF\CrmShop\WpfApp1\bin\Debug\Caliburn.Micro.Core.xml
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlSellers.g.cs
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlSellers.baml
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlCustomers.g.cs
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlCustomers.baml
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\AddingToCartWindow.g.cs
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\AddingToCartWindow.baml

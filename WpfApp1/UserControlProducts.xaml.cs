@@ -32,17 +32,19 @@ namespace WpfApp1
         {
             InitializeComponent();
             this.db = db;
-            products = db.Products.Local.ToBindingList();
             db.Products.Load();
-            productsGrid.ItemsSource = products;
+            db.Sellers.Load();
+            products = db.Products.Local.ToBindingList();
+            productsGrid.ItemsSource = products; 
+            (productsGrid.Columns[3] as DataGridComboBoxColumn).ItemsSource = db.Sellers.Local.ToBindingList().Where(x => x.Name != null);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Save(object sender, RoutedEventArgs e)
         {
             db.SaveChanges();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void RemoveElement(object sender, RoutedEventArgs e)
         {
             var selectedItem = productsGrid.SelectedItem;
             if (selectedItem != null)
@@ -51,6 +53,16 @@ namespace WpfApp1
                 var currentProduct = products.FirstOrDefault(x => x.Id == productCurrentId);
                 products.Remove(currentProduct);
                 db.SaveChanges();
+            }
+        }
+
+        private void AddToCart(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = productsGrid.SelectedItem;
+            if (selectedItem != null)
+            {
+                AddingToCartWindow toCartWindow = new AddingToCartWindow((Product)selectedItem);
+                toCartWindow.ShowDialog();
             }
         }
     }

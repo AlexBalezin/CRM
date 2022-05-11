@@ -80,14 +80,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddingToCartWindow.xaml.cs">
+      <DependentUpon>AddingToCartWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlCustomers.xaml.cs">
+      <DependentUpon>UserControlCustomers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlMenuItem.xaml.cs">
       <DependentUpon>UserControlMenuItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlProducts.xaml.cs">
       <DependentUpon>UserControlProducts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlSellers.xaml.cs">
+      <DependentUpon>UserControlSellers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModal\ItemMenu.cs" />
     <Compile Include="ViewModal\SubItem.cs" />
+    <Page Include="AddingToCartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,11 +113,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControlCustomers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlSellers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

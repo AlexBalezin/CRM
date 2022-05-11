@@ -39,11 +39,10 @@ namespace WpfApp1
             this.DataContext = itemMenu;
         }
 
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListViewMenu_MouseClick(object sender, MouseButtonEventArgs e)
         {
             var screen = ((SubItem)((ListView)sender).SelectedItem).Screen;
             _context.SwitchScreen(screen);
         }
-
     }
 }

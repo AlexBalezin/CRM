@@ -17,3 +17,4 @@ D:\Projects\WPF\CrmShop\CrmBl\bin\Debug\MaterialDesignThemes.Wpf.pdb
 D:\Projects\WPF\CrmShop\CrmBl\bin\Debug\MaterialDesignThemes.Wpf.xml
 D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.MainMigration.resources
 D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.csproj.GenerateResource.cache
+D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.Second.resources

@@ -62,7 +62,12 @@
     <Compile Include="Migrations\202205030803571_MainMigration.designer.cs">
       <DependentUpon>202205030803571_MainMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205101517128_Second.cs" />
+    <Compile Include="Migrations\202205101517128_Second.designer.cs">
+      <DependentUpon>202205101517128_Second.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\Check.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Product.cs" />
@@ -77,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202205030803571_MainMigration.resx">
       <DependentUpon>202205030803571_MainMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205101517128_Second.resx">
+      <DependentUpon>202205101517128_Second.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

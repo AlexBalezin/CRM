@@ -18,6 +18,8 @@ namespace CrmBl.Model
 
         public int Count { get; set; }
 
+        public virtual Seller Seller { get; set; }
+
         public virtual ICollection<Sell> Sells { get; set; }
 
     }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projects\WPF\CrmShop\WpfApp1\App.xaml
-3-1994826807
+6935188506
 
-9-1287354642
+12-1255737043
 23-1888061609
-MainWindow.xaml;UserControlMenuItem.xaml;UserControlProducts.xaml;
+AddingToCartWindow.xaml;MainWindow.xaml;UserControlCustomers.xaml;UserControlMenuItem.xaml;UserControlProducts.xaml;UserControlSellers.xaml;
 
 False
 
