@@ -27,11 +27,13 @@ namespace WpfApp1
     {
         CrmContext db;
         BindingList<Product> products;
+        Cart cart;
 
-        public UserControlProducts(CrmContext db)
+        public UserControlProducts(CrmContext db, Cart cart)
         {
             InitializeComponent();
             this.db = db;
+            this.cart = cart;
             db.Products.Load();
             db.Sellers.Load();
             products = db.Products.Local.ToBindingList();
@@ -61,7 +63,7 @@ namespace WpfApp1
             var selectedItem = productsGrid.SelectedItem;
             if (selectedItem != null)
             {
-                AddingToCartWindow toCartWindow = new AddingToCartWindow((Product)selectedItem);
+                AddingToCartWindow toCartWindow = new AddingToCartWindow((Product)selectedItem, cart, db);
                 toCartWindow.ShowDialog();
             }
         }

@@ -10,7 +10,9 @@ namespace CrmBl.Model
     {
         public int Id { get; set; }
 
-        public Dictionary<Product, int> Products { get; set; }
+        public Customer Customer { get; set; }
+
+        public Dictionary<Product, int> Products { get; set; } = new Dictionary<Product, int>();
 
         public decimal Sum { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using CrmBl.Model;
+﻿using CrmBl;
+using CrmBl.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,15 @@ namespace WpfApp1
     public partial class AddingToCartWindow : Window
     {
         Product product;
+        Cart cart;
+        CrmContext db;
 
-        public AddingToCartWindow(Product product)
+        public AddingToCartWindow(Product product, Cart cart, CrmContext db)
         {
             InitializeComponent();
+            this.db = db;
             this.product = product;
+            this.cart = cart;
             NameProduct.Text = product.Name;
             Count.Text = "1";
             Price.Text = product.Price.ToString();
@@ -35,8 +40,8 @@ namespace WpfApp1
 
         private void Add(object sender, RoutedEventArgs e)
         {
-
-
+            cart.Add(product, int.Parse(Count.Text));
+            this.Close();
         }
 
         private void Cancel(object sender, RoutedEventArgs e)

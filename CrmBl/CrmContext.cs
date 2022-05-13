@@ -21,5 +21,6 @@ namespace CrmBl
         public DbSet<Sell> Sells { get; set; }
 
         public DbSet<Seller> Sellers { get; set; }
+
     }
 }

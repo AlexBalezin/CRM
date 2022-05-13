@@ -28,7 +28,8 @@ namespace WpfApp1
         ItemMenu itemProduct;
         ItemMenu itemSeller;
         ItemMenu itemCustomer;
-        ItemMenu itemReceipt;
+        ItemMenu itemPurchase;
+        Cart cart;
 
         public MainWindow()
         {
@@ -36,13 +37,14 @@ namespace WpfApp1
             InitializeComponent();
 
             db = new CrmContext();
+            cart = new Cart();
 
             var menuProduct = new List<SubItem>();
             var menuSeller = new List<SubItem>();
             var menuCustomer = new List<SubItem>();
-            var menuReceipt = new List<SubItem>();
+            var menuPurchase = new List<SubItem>();
 
-            menuProduct.Add(new SubItem("Список товаров", new UserControlProducts(db)));
+            menuProduct.Add(new SubItem("Список товаров", new UserControlProducts(db, cart)));
             itemProduct = new ItemMenu("Товар", menuProduct, PackIconKind.AlphaPBox);
 
             menuSeller.Add(new SubItem("Список продавцов", new UserControlSellers(db)));
@@ -51,12 +53,13 @@ namespace WpfApp1
             menuCustomer.Add(new SubItem("Список покупателей", new UserControlCustomers(db)));
             itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
 
-            itemReceipt = new ItemMenu("Чек", menuReceipt, PackIconKind.About);
+            menuPurchase.Add(new SubItem("Корзина", new UserControlCart(db, cart)));
+            itemPurchase = new ItemMenu("Покупка", menuPurchase, PackIconKind.About);
 
             Menu.Children.Add(new UserControlMenuItem(itemProduct, this, db));
             Menu.Children.Add(new UserControlMenuItem(itemSeller, this, db));
             Menu.Children.Add(new UserControlMenuItem(itemCustomer, this, db));
-            Menu.Children.Add(new UserControlMenuItem(itemReceipt, this, db));
+            Menu.Children.Add(new UserControlMenuItem(itemPurchase, this, db));
 
         }
 
@@ -72,10 +75,13 @@ namespace WpfApp1
                     (((UserControlProducts)screen).productsGrid.Columns[3] as System.Windows.Controls.DataGridComboBoxColumn).ItemsSource = db.Sellers.Local.ToBindingList().Where(x => x.Name != null);
                 }
 
+                if (screen is UserControlCart)
+                {
+                    UserControlCart.FillDataGrid((UserControlCart)screen);
+                }
+
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(screen);
-
-
             }
         }
     }

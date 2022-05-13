@@ -41,3 +41,5 @@ D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlCustomers.g.cs
 D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlCustomers.baml
 D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\AddingToCartWindow.g.cs
 D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\AddingToCartWindow.baml
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlCart.g.cs
+D:\Projects\WPF\CrmShop\WpfApp1\obj\Debug\UserControlCart.baml

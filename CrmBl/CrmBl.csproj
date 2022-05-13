@@ -66,6 +66,14 @@
     <Compile Include="Migrations\202205101517128_Second.designer.cs">
       <DependentUpon>202205101517128_Second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205130833497_Third.cs" />
+    <Compile Include="Migrations\202205130833497_Third.designer.cs">
+      <DependentUpon>202205130833497_Third.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205130941465_Fourth.cs" />
+    <Compile Include="Migrations\202205130941465_Fourth.designer.cs">
+      <DependentUpon>202205130941465_Fourth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\Check.cs" />
@@ -85,6 +93,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205101517128_Second.resx">
       <DependentUpon>202205101517128_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205130833497_Third.resx">
+      <DependentUpon>202205130833497_Third.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205130941465_Fourth.resx">
+      <DependentUpon>202205130941465_Fourth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
