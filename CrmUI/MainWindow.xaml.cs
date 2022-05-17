@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using CrmUI.ViewModal;
 using CrmBl.Model;
 using System.Data.Entity;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace CrmUI
 {
@@ -25,65 +26,105 @@ namespace CrmUI
     public partial class MainWindow : Window
     {
         CrmContext db;
-        ItemMenu itemProduct;
-        ItemMenu itemSeller;
-        ItemMenu itemCustomer;
-        ItemMenu itemPurchase;
-        Cart cart;
 
         public MainWindow()
         {
-
             InitializeComponent();
-
             db = new CrmContext();
-            cart = new Cart();
+        }
 
-            var menuProduct = new List<SubItem>();
-            var menuSeller = new List<SubItem>();
-            var menuCustomer = new List<SubItem>();
-            var menuPurchase = new List<SubItem>();
+        private void Registration_Click(object sender, RoutedEventArgs e)
+        {
+            string login = loginField.Text.Trim();
+            string password = passwordField.Password.Trim();
+            string passwordRepeat = repeatPasswordField.Password.Trim();
+            string email = emailField.Text.Trim().ToLower();
 
-            menuProduct.Add(new SubItem("Список товаров", new UserControlProducts(db, cart)));
-            itemProduct = new ItemMenu("Товар", menuProduct, PackIconKind.AlphaPBox);
-
-            menuSeller.Add(new SubItem("Список продавцов", new UserControlSellers(db)));
-            itemSeller = new ItemMenu("Продавец", menuSeller, PackIconKind.About);
-
-            menuCustomer.Add(new SubItem("Список покупателей", new UserControlCustomers(db)));
-            itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
-
-            menuPurchase.Add(new SubItem("Корзина", new UserControlCart(db, cart)));
-            menuPurchase.Add(new SubItem("Чеки", new UserControlChecks(db)));
-            itemPurchase = new ItemMenu("Покупка", menuPurchase, PackIconKind.About);
-
-            Menu.Children.Add(new UserControlMenuItem(itemProduct, this, db));
-            Menu.Children.Add(new UserControlMenuItem(itemSeller, this, db));
-            Menu.Children.Add(new UserControlMenuItem(itemCustomer, this, db));
-            Menu.Children.Add(new UserControlMenuItem(itemPurchase, this, db));
+            if (Check(login, email, password, passwordRepeat))
+            {
+                if (!db.Users.Any(x => x.Login == login))
+                {
+                    User user = new User(login, email, password);
+                    db.Users.Add(user);
+                    Cart cart = new Cart() { User = user};
+                    db.Carts.Add(cart);
+                    db.SaveChanges();
+                    UserPageWindow userPageWindow = new UserPageWindow(cart);
+                    userPageWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    var notification = new ToastContentBuilder();
+                    notification.AddText("Такой пользователь уже зарегестрирован");
+                    notification.Show();
+                }
+            }
 
         }
 
-
-        internal void SwitchScreen(object sender)
+        private void Enter_Button_Click(object sender, RoutedEventArgs e)
         {
-            var screen = ((UserControl)sender);
+            AuthenticationWindow authenticationWindow = new AuthenticationWindow();
+            authenticationWindow.Show();
+            Hide();
 
-            if (screen != null)
+        }
+        private bool Check(string login, string email, string password, string passwordRepeat)
+        {
+            if (login.Length < 5)
             {
-                if (screen is UserControlProducts)
-                {
-                    (((UserControlProducts)screen).productsGrid.Columns[3] as System.Windows.Controls.DataGridComboBoxColumn).ItemsSource = db.Sellers.Local.ToBindingList().Where(x => x.Name != null);
-                }
-
-                if (screen is UserControlCart)
-                {
-                    UserControlCart.FillDataGrid((UserControlCart)screen);
-                }
-
-                StackPanelMain.Children.Clear();
-                StackPanelMain.Children.Add(screen);
+                loginField.ToolTip = "Логин должен содержать больше 5 символов";
+                loginField.Background = Brushes.DarkRed;
             }
+            else
+            {
+                loginField.ToolTip = "";
+                loginField.Background = Brushes.Transparent;
+            }
+
+            if (!email.Contains("@"))
+            {
+                emailField.ToolTip = "Email должен содержать" + "\"" + "@" + "\"";
+                emailField.Background = Brushes.DarkRed;
+            }
+            else
+            {
+                emailField.ToolTip = "";
+                emailField.Background = Brushes.Transparent;
+            }
+
+            if (password.Length < 5)
+            {
+                passwordField.ToolTip = "Пароль должен содержать больше 5 символов";
+                passwordField.Background = Brushes.DarkRed;
+            }
+            else
+            {
+                passwordField.ToolTip = "";
+                passwordField.Background = Brushes.Transparent;
+            }
+
+            if (password != passwordRepeat)
+            {
+                repeatPasswordField.ToolTip = "Введенные пароли должны совпадать";
+                repeatPasswordField.Background = Brushes.DarkRed;
+            }
+            else
+            {
+                repeatPasswordField.ToolTip = "";
+                repeatPasswordField.Background = Brushes.Transparent;
+            }
+
+            if (loginField.Background != Brushes.DarkRed &&
+                 emailField.Background != Brushes.DarkRed &&
+                 passwordField.Background != Brushes.DarkRed &&
+                 repeatPasswordField.Background != Brushes.DarkRed
+                 )
+                return true;
+            else
+                return false;
+
         }
     }
 }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Projects\WPF\CrmShop\CrmUI\obj\Debug\
+D:\Projects\WPF\CRM\CrmUI\obj\Debug\
 WpfApp1
 none
 false
 DEBUG;TRACE
-D:\Projects\WPF\CrmShop\CrmUI\App.xaml
-81322209419
+D:\Projects\WPF\CRM\CrmUI\App.xaml
+102126177255
 
-15-1382191299
-23-1888061609
-AddingToCartWindow.xaml;MainWindow.xaml;UserControlCart.xaml;UserControlChecks.xaml;UserControlCustomers.xaml;UserControlMenuItem.xaml;UserControlProducts.xaml;UserControlSellers.xaml;
+17-704934063
+214-1681141171
+AddingToCartWindow.xaml;AuthenticationWindow.xaml;MainWindow.xaml;UserControlCart.xaml;UserControlChecks.xaml;UserControlCustomers.xaml;UserControlMenuItem.xaml;UserControlProducts.xaml;UserControlSellers.xaml;UserPageWindow.xaml;
 
 True
 

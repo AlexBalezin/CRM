@@ -25,12 +25,15 @@ namespace CrmUI
     public partial class UserControlCart : UserControl
     {
         Cart cart;
-        UserControlChecks userControlChecks;
+        CrmContext db;
 
         public UserControlCart(CrmContext db, Cart cart)
         {
             InitializeComponent();
             this.cart = cart;
+            this.db = db;
+            db.Carts.Load();
+            FillDataGrid(cart, this);
         }
 
         private void Pay(object sender, RoutedEventArgs e)
@@ -44,14 +47,16 @@ namespace CrmUI
                 }
                 check.Created = DateTime.Now;
                 check.Sum = decimal.Parse(Itog.Text);
+                db.Checks.Add(check);
+                db.SaveChanges();
             }
         }
 
-        public static void FillDataGrid(UserControlCart userControlCart)
+        public static void FillDataGrid(Cart cart, UserControlCart userControlCart)
         {
             decimal sum = 0;
             List<ItemCart> itemCarts = new List<ItemCart>();
-            foreach (var product in userControlCart.cart.Products)
+            foreach (var product in cart.Products)
             {
                 itemCarts.Add(new ItemCart()
                 {

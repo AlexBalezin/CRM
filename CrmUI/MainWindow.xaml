@@ -6,35 +6,23 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:CrmUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MaxHeight="1080" MaxWidth="1920" MinWidth="200" MinHeight="350">
-    <Grid Background="#FFE5E5E5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280" />
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-
-        <materialDesign:ColorZone Grid.ColumnSpan="2" Mode="Inverted" Padding="16" Background="#699999" Height="83" VerticalAlignment="Center">
-            <DockPanel>
-                <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
-                </StackPanel>
-            </DockPanel>
-        </materialDesign:ColorZone>
-
-        <Grid Grid.Row="1" Background="#699999">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="9*"/>
-            </Grid.RowDefinitions>
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,0,0,0">
-                <StackPanel x:Name="Menu" Margin="10"/>
-            </ScrollViewer>
-        </Grid>
-        <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" Background="#DBD7D2"/>
+        Title="MainWindow" Height="600" Width="800">
+    <Grid Background="#DBD7D2">
+        <Border MinWidth="400" MaxWidth="550" Margin="15" VerticalAlignment="Center" Background="White" Padding="30" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock x:Name="GreetingText" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Text="Регистрация"></TextBlock>
+                <Grid>
+                    <Button Foreground="#699999" HorizontalAlignment="Left" Content="Войти" Style="{StaticResource MaterialDesignFlatButton }" Click="Enter_Button_Click" Cursor="Hand"/>
+                </Grid>
+                <TextBox x:Name="loginField"  materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Cursor="Arrow"/>
+                <PasswordBox x:Name="passwordField" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <PasswordBox x:Name="repeatPasswordField" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <TextBox x:Name="emailField" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Button Margin="0 20 0 0" Content="Регистрация" Click="Registration_Click" Cursor="Hand"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

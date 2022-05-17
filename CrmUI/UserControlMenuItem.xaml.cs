@@ -23,10 +23,10 @@ namespace CrmUI
     /// </summary>
     public partial class UserControlMenuItem : UserControl
     {
-        MainWindow _context;
+        UserPageWindow _context;
         CrmContext _db;
 
-        public UserControlMenuItem(ItemMenu itemMenu, MainWindow context, CrmContext db)
+        public UserControlMenuItem(ItemMenu itemMenu, UserPageWindow context, CrmContext db)
         {
             InitializeComponent();
 

@@ -1,0 +1,27 @@
+﻿<Window x:Class="CrmUI.AuthenticationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:CrmUI"
+        mc:Ignorable="d"
+        Title="AuthenticationWindow" Height="450" Width="800">
+    <Grid Background="#DBD7D2">
+        <Border MinWidth="400" MaxWidth="550" Margin="15" VerticalAlignment="Center" Background="White" Padding="30" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock x:Name="GreetingText" Text="Авторизация" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+                <Grid>
+                    <Button Background="#699999" x:Name="Registration" HorizontalAlignment="Left" Content="Регистрация" Click="Button_Reg_Click"/>
+                    <Button Foreground="#699999" HorizontalAlignment="Right" Content="Войти" Style="{StaticResource MaterialDesignFlatButton }"/>
+                </Grid>
+                <TextBox x:Name="loginField"  materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="passwordField" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Background="#699999" Margin="0 20 0 0" Content="Войти в кабинет" Click="Button_Auth_Click" Cursor="Hand"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

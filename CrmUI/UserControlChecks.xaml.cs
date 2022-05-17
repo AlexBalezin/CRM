@@ -31,9 +31,7 @@ namespace CrmUI
         {
             InitializeComponent();
             this.db = db;
-            db.Checks.Load();
-            checks = db.Checks.Local.ToBindingList();
-            checkGrid.ItemsSource = checks;
+            FillDataGridChecks(this);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -41,9 +39,12 @@ namespace CrmUI
 
         }
 
-        public static void FillDataGridChecks(Check check)
+        public static void FillDataGridChecks(UserControlChecks userControlChecks)
         {
-
+            userControlChecks.db.Checks.Load();
+            userControlChecks.checks = userControlChecks.db.Checks.Local.ToBindingList();
+            userControlChecks.checkGrid.ItemsSource = null;
+            userControlChecks.checkGrid.ItemsSource = userControlChecks.checks;
         }
 
         public static void AddCheck(Check check)
