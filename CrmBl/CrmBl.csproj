@@ -74,6 +74,18 @@
     <Compile Include="Migrations\202205130941465_Fourth.designer.cs">
       <DependentUpon>202205130941465_Fourth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205161208265_Fifth.cs" />
+    <Compile Include="Migrations\202205161208265_Fifth.designer.cs">
+      <DependentUpon>202205161208265_Fifth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205170545212_Sixth.cs" />
+    <Compile Include="Migrations\202205170545212_Sixth.designer.cs">
+      <DependentUpon>202205170545212_Sixth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205170612104_Seventh.cs" />
+    <Compile Include="Migrations\202205170612104_Seventh.designer.cs">
+      <DependentUpon>202205170612104_Seventh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\Check.cs" />
@@ -81,6 +93,7 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Sell.cs" />
     <Compile Include="Model\Seller.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +112,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205130941465_Fourth.resx">
       <DependentUpon>202205130941465_Fourth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205161208265_Fifth.resx">
+      <DependentUpon>202205161208265_Fifth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205170545212_Sixth.resx">
+      <DependentUpon>202205170545212_Sixth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205170612104_Seventh.resx">
+      <DependentUpon>202205170612104_Seventh.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -88,3 +88,5 @@ D:\Projects\WPF\CrmShop\CrmUI\obj\Debug\CrmUI.csproj.CoreCompileInputs.cache
 D:\Projects\WPF\CrmShop\CrmUI\obj\Debug\CrmUI.csproj.CopyComplete
 D:\Projects\WPF\CrmShop\CrmUI\obj\Debug\WpfApp1.exe
 D:\Projects\WPF\CrmShop\CrmUI\obj\Debug\WpfApp1.pdb
+D:\Projects\WPF\CrmShop\CrmUI\obj\Debug\UserControlChecks.g.cs
+D:\Projects\WPF\CrmShop\CrmUI\obj\Debug\UserControlChecks.baml

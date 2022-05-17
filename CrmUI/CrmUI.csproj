@@ -86,6 +86,9 @@
     <Compile Include="UserControlCart.xaml.cs">
       <DependentUpon>UserControlCart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlChecks.xaml.cs">
+      <DependentUpon>UserControlChecks.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlCustomers.xaml.cs">
       <DependentUpon>UserControlCustomers.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControlCart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlChecks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,7 +21,7 @@
                 </DataGrid>
             </DockPanel>
             <DockPanel Margin="0 20">
-                <Button DockPanel.Dock="Right" Click="Button_Click" Cursor="Hand" HorizontalAlignment="Left" Width="150" Background="#699999" VerticalAlignment="Top" Margin="10 0 40 0">Оплатить</Button>
+                <Button DockPanel.Dock="Right" Click="Pay" Cursor="Hand" HorizontalAlignment="Left" Width="150" Background="#699999" VerticalAlignment="Top" Margin="10 0 40 0">Оплатить</Button>
                 <TextBlock x:Name="Itog" HorizontalAlignment="Right" VerticalAlignment="Top" TextWrapping="Wrap" Height="30" Width="150" FontSize="20"/>
             </DockPanel>
         </StackPanel>

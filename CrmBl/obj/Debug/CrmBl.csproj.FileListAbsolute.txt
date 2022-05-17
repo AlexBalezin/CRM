@@ -20,3 +20,6 @@ D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.csproj.GenerateResource.cache
 D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.Second.resources
 D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.Third.resources
 D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.Fourth.resources
+D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.Fifth.resources
+D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.Sixth.resources
+D:\Projects\WPF\CrmShop\CrmBl\obj\Debug\CrmBl.Migrations.Seventh.resources

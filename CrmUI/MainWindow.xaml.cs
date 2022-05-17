@@ -54,6 +54,7 @@ namespace CrmUI
             itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
 
             menuPurchase.Add(new SubItem("Корзина", new UserControlCart(db, cart)));
+            menuPurchase.Add(new SubItem("Чеки", new UserControlChecks(db)));
             itemPurchase = new ItemMenu("Покупка", menuPurchase, PackIconKind.About);
 
             Menu.Children.Add(new UserControlMenuItem(itemProduct, this, db));

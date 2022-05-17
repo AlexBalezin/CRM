@@ -20,6 +20,10 @@ namespace CrmBl.Model
 
         public DateTime Created { get; set; }
 
+        public decimal Sum { get; set; }
+
+        public List<string> ProductsName { get; set; }
+
         public virtual ICollection<Sell> Sells { get; set; }
 
         public override string ToString()

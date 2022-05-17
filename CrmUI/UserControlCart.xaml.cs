@@ -25,6 +25,7 @@ namespace CrmUI
     public partial class UserControlCart : UserControl
     {
         Cart cart;
+        UserControlChecks userControlChecks;
 
         public UserControlCart(CrmContext db, Cart cart)
         {
@@ -32,9 +33,18 @@ namespace CrmUI
             this.cart = cart;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Pay(object sender, RoutedEventArgs e)
         {
-
+            if (!cartGrid.Items.IsEmpty)
+            {
+                Check check = new Check();
+                foreach (var item in cartGrid.Items)
+                {
+                    check.ProductsName.Add(((ItemCart)item).ProductName);
+                }
+                check.Created = DateTime.Now;
+                check.Sum = decimal.Parse(Itog.Text);
+            }
         }
 
         public static void FillDataGrid(UserControlCart userControlCart)
