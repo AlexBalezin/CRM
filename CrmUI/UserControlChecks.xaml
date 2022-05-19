@@ -14,9 +14,9 @@
                       FontSize="25"
                       SelectionMode="Single" Margin="40">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Номер" Binding = "{Binding Path = ProductName}" FontSize="20" Width="*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Товары" Binding = "{Binding Path = Price}" FontSize="20" Width="*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Сумма" Binding = "{Binding Path = Count}" FontSize="20" Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер" Binding = "{Binding Path = Id}" FontSize="20" Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Товары" Binding = "{Binding Path = Name}" FontSize="20" Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Сумма" Binding = "{Binding Path = Sum}" FontSize="20" Width="*"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>

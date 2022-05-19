@@ -17,19 +17,20 @@ namespace CrmUI
     public partial class UserPageWindow : Window
     {
         CrmContext db;
-        ItemMenu itemProduct;
-        ItemMenu itemSeller;
-        ItemMenu itemCustomer;
-        ItemMenu itemPurchase;
+        User user;
         Cart cart;
 
-        public UserPageWindow(Cart cart)
+        public UserPageWindow(User user)
         {
 
             InitializeComponent();
+            this.user = user;
 
             db = new CrmContext();
-            this.cart = cart;
+            db.Carts.Load();
+            db.Customers.Load();
+            db.Users.Load();
+            cart = db.Carts.Where(x => x.Customer.User.Id == user.Id).FirstOrDefault();
 
             var menuProduct = new List<SubItem>();
             var menuSeller = new List<SubItem>();
@@ -37,17 +38,17 @@ namespace CrmUI
             var menuPurchase = new List<SubItem>();
 
             menuProduct.Add(new SubItem("Список товаров", new UserControlProducts(db, cart)));
-            itemProduct = new ItemMenu("Товар", menuProduct, PackIconKind.AlphaPBox);
+            ItemMenu itemProduct = new ItemMenu("Товар", menuProduct, PackIconKind.AlphaPBox);
 
             menuSeller.Add(new SubItem("Список продавцов", new UserControlSellers(db)));
-            itemSeller = new ItemMenu("Продавец", menuSeller, PackIconKind.About);
+            ItemMenu itemSeller = new ItemMenu("Продавец", menuSeller, PackIconKind.About);
 
             menuCustomer.Add(new SubItem("Список покупателей", new UserControlCustomers(db)));
-            itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
+            ItemMenu itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
 
-            menuPurchase.Add(new SubItem("Корзина", new UserControlCart(db, cart)));
-            menuPurchase.Add(new SubItem("Чеки", new UserControlChecks(db)));
-            itemPurchase = new ItemMenu("Покупка", menuPurchase, PackIconKind.About);
+            menuPurchase.Add(new SubItem("Корзина", new UserControlCart(db, user)));
+            menuPurchase.Add(new SubItem("Чеки", new UserControlChecks(db, user)));
+            ItemMenu itemPurchase = new ItemMenu("Покупка", menuPurchase, PackIconKind.About);
 
             Menu.Children.Add(new UserControlMenuItem(itemProduct, this, db));
             Menu.Children.Add(new UserControlMenuItem(itemSeller, this, db));
@@ -70,12 +71,12 @@ namespace CrmUI
 
                 if (screen is UserControlCart)
                 {
-                    UserControlCart.FillDataGrid(cart, (UserControlCart)screen);
+                    UserControlCart.FillDataGrid((UserControlCart)screen);
                 }
 
                 if (screen is UserControlChecks)
                 {
-                    UserControlChecks.FillDataGridChecks((UserControlChecks)screen);
+                    UserControlChecks.FillDataGridChecks((UserControlChecks)screen, user);
                 }
 
                 StackPanelMain.Children.Clear();

@@ -33,5 +33,10 @@ namespace CrmBl.Model
             this.email = email;
             this.pass = pass;
         }
+
+        public override bool Equals(Object user)
+        {
+            return this.Id == ((User)user).Id;
+        }
     }
 }

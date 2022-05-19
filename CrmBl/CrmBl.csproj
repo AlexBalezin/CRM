@@ -45,37 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrmContext.cs" />
-    <Compile Include="Migrations\202205030803571_MainMigration.cs" />
-    <Compile Include="Migrations\202205030803571_MainMigration.designer.cs">
-      <DependentUpon>202205030803571_MainMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205101517128_Second.cs" />
-    <Compile Include="Migrations\202205101517128_Second.designer.cs">
-      <DependentUpon>202205101517128_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205130833497_Third.cs" />
-    <Compile Include="Migrations\202205130833497_Third.designer.cs">
-      <DependentUpon>202205130833497_Third.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205130941465_Fourth.cs" />
-    <Compile Include="Migrations\202205130941465_Fourth.designer.cs">
-      <DependentUpon>202205130941465_Fourth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205161208265_Fifth.cs" />
-    <Compile Include="Migrations\202205161208265_Fifth.designer.cs">
-      <DependentUpon>202205161208265_Fifth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205170545212_Sixth.cs" />
-    <Compile Include="Migrations\202205170545212_Sixth.designer.cs">
-      <DependentUpon>202205170545212_Sixth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205170612104_Seventh.cs" />
-    <Compile Include="Migrations\202205170612104_Seventh.designer.cs">
-      <DependentUpon>202205170612104_Seventh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205171223380_Eighth.cs" />
-    <Compile Include="Migrations\202205171223380_Eighth.designer.cs">
-      <DependentUpon>202205171223380_Eighth.cs</DependentUpon>
+    <Compile Include="Migrations\202205190753088_First.cs" />
+    <Compile Include="Migrations\202205190753088_First.designer.cs">
+      <DependentUpon>202205190753088_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Cart.cs" />
@@ -89,32 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205030803571_MainMigration.resx">
-      <DependentUpon>202205030803571_MainMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205101517128_Second.resx">
-      <DependentUpon>202205101517128_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205130833497_Third.resx">
-      <DependentUpon>202205130833497_Third.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205130941465_Fourth.resx">
-      <DependentUpon>202205130941465_Fourth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205161208265_Fifth.resx">
-      <DependentUpon>202205161208265_Fifth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205170545212_Sixth.resx">
-      <DependentUpon>202205170545212_Sixth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205170612104_Seventh.resx">
-      <DependentUpon>202205170612104_Seventh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205171223380_Eighth.resx">
-      <DependentUpon>202205171223380_Eighth.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework">
@@ -151,6 +97,11 @@
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202205190753088_First.resx">
+      <DependentUpon>202205190753088_First.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

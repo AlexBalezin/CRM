@@ -10,21 +10,11 @@ namespace CrmBl.Model
     {
         public int Id { get; set; }
 
-        public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }  
 
-        public virtual Customer Customer { get; set; }
-
-        public int SellerId { get; set; }
-
-        public virtual Seller Seller { get; set; }
-
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.Now;
 
         public decimal Sum { get; set; }
-
-        public List<string> ProductsName { get; set; } = new List<string>();
-
-        public virtual ICollection<Sell> Sells { get; set; }
 
         public override string ToString()
         {

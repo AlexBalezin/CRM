@@ -39,7 +39,7 @@ namespace CrmUI
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            Hide();
+            Close();
         }
 
         private void Button_Auth_Click(object sender, RoutedEventArgs e)
@@ -56,12 +56,7 @@ namespace CrmUI
                 var notification = new ToastContentBuilder();
                 notification.AddText("Вход выполнен");
                 notification.Show();
-                using (CrmContext db = new CrmContext())
-                {
-                    db.Carts.Load();
-                    cart = db.Carts.Local.FirstOrDefault(c => c.User.Id == currentUser.Id);
-                }
-                UserPageWindow userPageWindow = new UserPageWindow(cart);
+                UserPageWindow userPageWindow = new UserPageWindow(currentUser);
                 userPageWindow.Show();
                 Close();
             }

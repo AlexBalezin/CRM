@@ -20,7 +20,5 @@ namespace CrmBl.Model
 
         public virtual Seller Seller { get; set; }
 
-        public virtual ICollection<Sell> Sells { get; set; }
-
     }
 }

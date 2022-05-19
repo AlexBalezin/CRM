@@ -10,7 +10,7 @@ namespace CrmBl.Model
     {
         public int Id { get; set; }
 
-        public User User { get; set; }
+        public Customer Customer { get; set; }
 
         public Dictionary<Product, int> Products { get; set; } = new Dictionary<Product, int>();
 

@@ -25,13 +25,14 @@ namespace CrmUI
     public partial class UserControlChecks : UserControl
     {
         CrmContext db;
-        BindingList<Check> checks;
+        User user;
 
-        public UserControlChecks(CrmContext db)
+        public UserControlChecks(CrmContext db, User user)
         {
             InitializeComponent();
             this.db = db;
-            FillDataGridChecks(this);
+            this.user = user;
+            FillDataGridChecks(this, user);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -39,12 +40,27 @@ namespace CrmUI
 
         }
 
-        public static void FillDataGridChecks(UserControlChecks userControlChecks)
+        public static void FillDataGridChecks(UserControlChecks userControlChecks, User user)
         {
             userControlChecks.db.Checks.Load();
-            userControlChecks.checks = userControlChecks.db.Checks.Local.ToBindingList();
-            userControlChecks.checkGrid.ItemsSource = null;
-            userControlChecks.checkGrid.ItemsSource = userControlChecks.checks;
+            userControlChecks.db.Sells.Load();
+            userControlChecks.db.Products.Load();
+            userControlChecks.db.Customers.Load();
+            userControlChecks.db.Users.Load();
+
+            var customer = userControlChecks.db.Customers.Where(c => c.User.Id == user.Id).FirstOrDefault();
+            var checks = userControlChecks.db.Checks.Where(c => c.Customer.Id == customer.Id);
+            var sells = userControlChecks.db.Sells;
+            var products = userControlChecks.db.Products;
+            var items = from check in checks
+                        join sell in sells on check.Id equals sell.Check.Id
+                        join product in products on sell.Product.Id equals product.Id
+                        select new { check.Id, product.Name, check.Sum };
+
+
+
+                userControlChecks.checkGrid.ItemsSource = null;
+            userControlChecks.checkGrid.ItemsSource = items.ToList();
         }
 
         public static void AddCheck(Check check)

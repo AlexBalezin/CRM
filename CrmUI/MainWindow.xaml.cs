@@ -45,11 +45,12 @@ namespace CrmUI
                 if (!db.Users.Any(x => x.Login == login))
                 {
                     User user = new User(login, email, password);
+                    Customer customer = new Customer() { User = user, Name = user.Login };
                     db.Users.Add(user);
-                    Cart cart = new Cart() { User = user};
+                    Cart cart = new Cart() { Customer = customer };
                     db.Carts.Add(cart);
                     db.SaveChanges();
-                    UserPageWindow userPageWindow = new UserPageWindow(cart);
+                    UserPageWindow userPageWindow = new UserPageWindow(user);
                     userPageWindow.Show();
                     Close();
                 }

@@ -10,10 +10,10 @@ namespace CrmBl.Model
     {
         public int Id { get; set; }
 
-        public int ProductId { get; set; }
+        public Check Check { get; set; }
 
-        public int CheckId { get; set; }
+        public Product Product { get; set; }
 
-        public virtual Check Check { get; set; }
+        public int Count { get; set; }
     }
 }

@@ -24,48 +24,63 @@ namespace CrmUI
     /// </summary>
     public partial class UserControlCart : UserControl
     {
-        Cart cart;
         CrmContext db;
+        User user;
+        Customer customer;
+        Cart cart;
 
-        public UserControlCart(CrmContext db, Cart cart)
+        public UserControlCart(CrmContext db, User user)
         {
             InitializeComponent();
-            this.cart = cart;
+            this.user = user;
             this.db = db;
             db.Carts.Load();
-            FillDataGrid(cart, this);
+            db.Users.Load();
+            db.Customers.Load();
+
+            customer = db.Customers.Where(c => c.User.Id == user.Id).FirstOrDefault();
+            cart = db.Carts.Where(c => c.Customer.User.Id == user.Id).FirstOrDefault();
+            FillDataGrid(this);
         }
 
         private void Pay(object sender, RoutedEventArgs e)
         {
             if (!cartGrid.Items.IsEmpty)
             {
-                Check check = new Check();
+                Check check = new Check() { Customer = customer, Sum = decimal.Parse(Itog.Text) };
+                db.Checks.Add(check);
+                db.SaveChanges();
                 foreach (var item in cartGrid.Items)
                 {
-                    check.ProductsName.Add(((ItemCart)item).ProductName);
+                    var product = ((ItemCart)item).Product;
+                    Sell sell = new Sell() { Product = product, Check = check, Count = product.Count};
+                    db.Sells.Add(sell);
+                    db.SaveChanges();
                 }
-                check.Created = DateTime.Now;
-                check.Sum = decimal.Parse(Itog.Text);
-                db.Checks.Add(check);
+                cartGrid.ItemsSource = null;
+                cart.Sum = 0;
+                cart.Products.Clear();
                 db.SaveChanges();
             }
         }
 
-        public static void FillDataGrid(Cart cart, UserControlCart userControlCart)
+        public static void FillDataGrid(UserControlCart userControlCart)
         {
             decimal sum = 0;
+            userControlCart.db.Carts.Load();
             List<ItemCart> itemCarts = new List<ItemCart>();
-            foreach (var product in cart.Products)
+            foreach (var product in userControlCart.cart.Products)
             {
                 itemCarts.Add(new ItemCart()
                 {
-                    ProductName = product.Key.Name,
+                    Product = product.Key,
                     Price = product.Key.Price,
                     Count = product.Value,
                 });
                 sum += product.Key.Price * product.Value;
             }
+            userControlCart.cart.Sum = sum;
+            userControlCart.db.SaveChanges();
             userControlCart.cartGrid.ItemsSource = null;
             userControlCart.cartGrid.ItemsSource = itemCarts;
             userControlCart.Itog.Text = sum.ToString();
@@ -74,7 +89,7 @@ namespace CrmUI
 
     internal struct ItemCart
     {
-        public string ProductName { get; set; }
+        public Product Product { get; set; }
 
         public decimal Price { get; set; }
 

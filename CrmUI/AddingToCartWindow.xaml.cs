@@ -47,10 +47,10 @@ namespace CrmUI
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            cart.Add(product, int.Parse(Count.Text));
             var selectedItem = userControlProducts.productsGrid.SelectedItem;
             if (selectedItem != null)
             {
+                cart.Add(product, int.Parse(Count.Text));
                 var productCurrentId = ((Product)selectedItem).Id;
                 var currentProduct = products.FirstOrDefault(x => x.Id == productCurrentId);
                 currentProduct.Count -= int.Parse(Count.Text);
@@ -58,7 +58,6 @@ namespace CrmUI
                 userControlProducts.productsGrid.ItemsSource = null;
                 userControlProducts.productsGrid.ItemsSource = products;
             }
-
             this.Close();
         }
 
