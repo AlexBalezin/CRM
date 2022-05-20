@@ -77,6 +77,10 @@
             "System.ValueTuple": {
               "target": "Package",
               "version": "[4.5.0, )"
+            },
+            "Telegram.Bot": {
+              "target": "Package",
+              "version": "[17.0.0, )"
             }
           },
           "imports": [

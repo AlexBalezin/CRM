@@ -7,7 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-
+using Telegram.Bot;
 
 namespace CrmUI
 {
@@ -19,11 +19,14 @@ namespace CrmUI
         CrmContext db;
         User user;
         Cart cart;
+        TelegramBotClient bot;
+        private readonly string token = "5368138791:AAH-QoSlhkKSxzIcPaeyxFbJAsYWdDtqyk8";
 
         public UserPageWindow(User user)
         {
 
             InitializeComponent();
+            bot = new TelegramBotClient(token); 
             this.user = user;
 
             db = new CrmContext();
@@ -47,7 +50,7 @@ namespace CrmUI
             ItemMenu itemCustomer = new ItemMenu("Покупатель", menuCustomer, PackIconKind.About);
 
             menuPurchase.Add(new SubItem("Корзина", new UserControlCart(db, user)));
-            menuPurchase.Add(new SubItem("Чеки", new UserControlChecks(db, user)));
+            menuPurchase.Add(new SubItem("Чеки", new UserControlChecks(db, user, bot)));
             ItemMenu itemPurchase = new ItemMenu("Покупка", menuPurchase, PackIconKind.About);
 
             Menu.Children.Add(new UserControlMenuItem(itemProduct, this, db));

@@ -42,3 +42,8 @@ D:\Projects\WPF\CRM\CrmBl\obj\Debug\CrmBl.dll
 D:\Projects\WPF\CRM\CrmBl\obj\Debug\CrmBl.pdb
 D:\Projects\WPF\CRM\CrmBl\obj\Debug\CrmBl.Migrations.First.resources
 D:\Projects\WPF\CRM\CrmBl\obj\Debug\CrmBl.csproj.GenerateResource.cache
+D:\Projects\WPF\CRM\CrmBl\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\WPF\CRM\CrmBl\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Projects\WPF\CRM\CrmBl\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Projects\WPF\CRM\CrmBl\bin\Debug\Telegram.Bot.dll
+D:\Projects\WPF\CRM\CrmBl\bin\Debug\Telegram.Bot.pdb

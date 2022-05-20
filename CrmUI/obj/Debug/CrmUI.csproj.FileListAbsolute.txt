@@ -140,3 +140,8 @@ D:\Projects\WPF\CRM\CrmUI\obj\Debug\UserPageWindow.g.cs
 D:\Projects\WPF\CRM\CrmUI\obj\Debug\AuthenticationWindow.g.cs
 D:\Projects\WPF\CRM\CrmUI\obj\Debug\UserPageWindow.baml
 D:\Projects\WPF\CRM\CrmUI\obj\Debug\AuthenticationWindow.baml
+D:\Projects\WPF\CRM\CrmUI\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\WPF\CRM\CrmUI\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Projects\WPF\CRM\CrmUI\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Projects\WPF\CRM\CrmUI\bin\Debug\Telegram.Bot.dll
+D:\Projects\WPF\CRM\CrmUI\bin\Debug\Telegram.Bot.pdb

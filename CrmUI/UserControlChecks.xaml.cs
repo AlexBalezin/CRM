@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telegram.Bot;
 
 namespace CrmUI
 {
@@ -26,18 +28,23 @@ namespace CrmUI
     {
         CrmContext db;
         User user;
+        TelegramBotClient bot;
 
-        public UserControlChecks(CrmContext db, User user)
+        public UserControlChecks(CrmContext db, User user, TelegramBotClient bot)
         {
             InitializeComponent();
             this.db = db;
             this.user = user;
+            this.bot = bot;
             FillDataGridChecks(this, user);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SendCheck(object sender, RoutedEventArgs e)
         {
+            var selectedItem = (ItemCheck)checkGrid.SelectedItem;
+            var message = $"Чек от {selectedItem.Date}. Товар: {selectedItem.NameProduct}. На сумму: {selectedItem.Sum}";
 
+            bot.SendTextMessageAsync(1432445917, message);
         }
 
         public static void FillDataGridChecks(UserControlChecks userControlChecks, User user)
@@ -52,20 +59,32 @@ namespace CrmUI
             var checks = userControlChecks.db.Checks.Where(c => c.Customer.Id == customer.Id);
             var sells = userControlChecks.db.Sells;
             var products = userControlChecks.db.Products;
+
             var items = from check in checks
                         join sell in sells on check.Id equals sell.Check.Id
                         join product in products on sell.Product.Id equals product.Id
-                        select new { check.Id, product.Name, check.Sum };
+                        select new { check.Id, product.Name, check.Sum, check.Created};
 
+            List<ItemCheck> itemChecks = new List<ItemCheck>();
+            foreach (var item in items)
+                itemChecks.Add(new ItemCheck() { Id = item.Id, NameProduct = item.Name, Sum = item.Sum, Date  = item.Created });
 
-
-                userControlChecks.checkGrid.ItemsSource = null;
-            userControlChecks.checkGrid.ItemsSource = items.ToList();
+            userControlChecks.checkGrid.ItemsSource = null;
+            userControlChecks.checkGrid.ItemsSource = itemChecks;
         }
 
         public static void AddCheck(Check check)
         {
 
         }
+
+    }
+
+    struct ItemCheck
+    {
+        public int Id { get; set; }
+        public string NameProduct { get; set; }
+        public decimal Sum { get; set; }
+        public DateTime Date { get; set; }
     }
 }
