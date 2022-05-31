@@ -2,8 +2,12 @@
 using CrmBl.Model;
 using CrmUI.ViewModal;
 using MaterialDesignThemes.Wpf;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,13 +24,25 @@ namespace CrmUI
         User user;
         Cart cart;
         TelegramBotClient bot;
-        private readonly string token = "5368138791:AAH-QoSlhkKSxzIcPaeyxFbJAsYWdDtqyk8";
+        string token = "";
 
         public UserPageWindow(User user)
         {
+            // чтение из json файла
+            try
+            {
+                using (StreamReader reader = new StreamReader(@"D:\Projects\WPF\CRM\CrmBl\Data.json"))
+                {
+                    string jsonString = reader.ReadToEnd();
+                    var json = JObject.Parse(jsonString);
+                    token = json["token"].ToString();
+                }
+            }
+            catch { }
+
 
             InitializeComponent();
-            bot = new TelegramBotClient(token); 
+            bot = new TelegramBotClient(token);
             this.user = user;
 
             db = new CrmContext();

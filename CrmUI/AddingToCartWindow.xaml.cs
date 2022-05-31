@@ -91,7 +91,7 @@ namespace CrmUI
         private void ValidateButton()
         {
             int count = int.Parse(Count.Text);
-            Minus.IsEnabled = count == 1 ? false : true;
+            Minus.IsEnabled = count <= 1 ? false : true;
             Plus.IsEnabled = count == product.Count ? false : true;
         }
     }

@@ -37,7 +37,7 @@ namespace CrmUI
             db.Products.Load();
             db.Sellers.Load();
             products = db.Products.Local.ToBindingList();
-            productsGrid.ItemsSource = products; 
+            productsGrid.ItemsSource = products;
             (productsGrid.Columns[3] as DataGridComboBoxColumn).ItemsSource = db.Sellers.Local.ToBindingList().Where(x => x.Name != null);
         }
 
@@ -65,6 +65,20 @@ namespace CrmUI
             {
                 AddingToCartWindow toCartWindow = new AddingToCartWindow((Product)selectedItem, cart, db, this);
                 toCartWindow.ShowDialog();
+            }
+        }
+
+        private void productsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) => ValidateAddingToCartButton();
+
+        private void productsGrid_CurrentCellChanged(object sender, EventArgs e) => ValidateAddingToCartButton();
+
+
+        private void ValidateAddingToCartButton()
+        {
+            var selectedItem = productsGrid.SelectedItem;
+            if (selectedItem != null && selectedItem is Product)
+            {
+                AddingToCart.IsEnabled = ((Product)selectedItem).Count >= 1 ? true : false;
             }
         }
     }

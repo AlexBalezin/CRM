@@ -1,9 +1,11 @@
 ﻿using CrmBl;
 using CrmBl.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -29,10 +31,24 @@ namespace CrmUI
         CrmContext db;
         User user;
         TelegramBotClient bot;
+        int chatId = default;
 
         public UserControlChecks(CrmContext db, User user, TelegramBotClient bot)
         {
             InitializeComponent();
+
+            // чтение из json файла
+            try
+            {
+                using (StreamReader reader = new StreamReader(@"D:\Projects\WPF\CRM\CrmBl\Data.json"))
+                {
+                    string jsonString = reader.ReadToEnd();
+                    var json = JObject.Parse(jsonString);
+                    chatId = (int)json["chatId"];
+                }
+            }
+            catch { }
+
             this.db = db;
             this.user = user;
             this.bot = bot;
@@ -44,7 +60,7 @@ namespace CrmUI
             var selectedItem = (ItemCheck)checkGrid.SelectedItem;
             var message = $"Чек от {selectedItem.Date}. Товар: {selectedItem.NameProduct}. На сумму: {selectedItem.Sum}";
 
-            bot.SendTextMessageAsync(1432445917, message);
+            bot.SendTextMessageAsync(chatId, message);
         }
 
         public static void FillDataGridChecks(UserControlChecks userControlChecks, User user)
@@ -63,11 +79,11 @@ namespace CrmUI
             var items = from check in checks
                         join sell in sells on check.Id equals sell.Check.Id
                         join product in products on sell.Product.Id equals product.Id
-                        select new { check.Id, product.Name, check.Sum, check.Created};
+                        select new { check.Id, product.Name, check.Sum, check.Created };
 
             List<ItemCheck> itemChecks = new List<ItemCheck>();
             foreach (var item in items)
-                itemChecks.Add(new ItemCheck() { Id = item.Id, NameProduct = item.Name, Sum = item.Sum, Date  = item.Created });
+                itemChecks.Add(new ItemCheck() { Id = item.Id, NameProduct = item.Name, Sum = item.Sum, Date = item.Created });
 
             userControlChecks.checkGrid.ItemsSource = null;
             userControlChecks.checkGrid.ItemsSource = itemChecks;

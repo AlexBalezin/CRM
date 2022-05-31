@@ -14,11 +14,13 @@
                 <StackPanel>
                     <Button Click="Save" Cursor="Hand" HorizontalAlignment="Left" Width="150" Background="#699999" VerticalAlignment="Top" Margin="0 100 0 0">Сохранить</Button>
                     <Button Click="RemoveElement" Cursor="Hand" Background="#699999" Width="150" VerticalAlignment="Top" Margin="0 30 0 0">Удалить элемент</Button>
-                    <Button Click="AddToCart" Cursor="Hand" Background="#699999" Width="150" VerticalAlignment="Top" Margin="0 30 0 0">В корзину</Button>
+                    <Button x:Name="AddingToCart" Click="AddToCart" Cursor="Hand" Background="#699999" Width="150" VerticalAlignment="Top" Margin="0 30 0 0">В корзину</Button>
                 </StackPanel>
                 <DataGrid x:Name="productsGrid" AutoGenerateColumns="False" ItemsSource="{DynamicResource ResourceKey=products}"
                       FontSize="25"
-                      SelectionMode="Single" Margin="40">
+                      SelectionMode="Single" Margin="40"
+                      SelectionChanged="productsGrid_SelectionChanged"
+                      CurrentCellChanged="productsGrid_CurrentCellChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название" Binding = "{Binding Path = Name}" FontSize="20" Width="*"></DataGridTextColumn>
                         <DataGridTextColumn Header="Цена" Binding = "{Binding Path = Price}" FontSize="20" Width="*"></DataGridTextColumn>
